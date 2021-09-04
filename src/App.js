@@ -1,17 +1,16 @@
-import { useState, useReducer } from 'react'
-import {reducer} from './reducer';
-
-const initialState = {
-  data: '',
-  loading: false,
-  error: ''
-}
+import { useReducer } from 'react'
+import {reducer, initialState} from './reducer';
 
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log('state:', state)
+  console.log('state: ', state)
 
+  const {data, loading, error} = state;
+
+  // const [data, setData] = useState('')
+  // const [loading, setLoading] = useState(false)
+  // const [error, setError] = useState('')
 
   const fetchData = () => {
     dispatch({type: 'FETCH_START'})
@@ -28,11 +27,11 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <button onClick={fetchData} disabled={state.loading} style={{ width: '100px', margin: '1rem' }}>
+      <button onClick={fetchData} disabled={loading} style={{ width: '100px', margin: '1rem' }}>
         Fetch Data
       </button>
-      {state.data && <img src={state.data} alt="cat-img" />}
-      {state.error && <p>{state.error}</p>}
+      {data && <img src={data} alt="cat-img" />}
+      {error && <p>{error}</p>}
     </div>
   )
 }

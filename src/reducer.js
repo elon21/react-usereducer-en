@@ -1,3 +1,10 @@
+
+export const initialState = {
+    data: '',
+    loading: false,
+    error: ''
+  }
+
 export const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_START':
